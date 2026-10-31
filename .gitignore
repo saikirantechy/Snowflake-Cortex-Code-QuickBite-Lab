@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.uv/
+uv.lock
+
+# Secrets & local config – never commit
+.env
+.env.*
+*.pem
+*.p8
+.streamlit/secrets.toml
+config.toml
+!dashboard/.streamlit/config.toml
+connections.toml
+
+# Dataset (obtain from the official lab)
+quickbite_data/
+*.zip
+*.csv
+
+# OS / editor
+.DS_Store
+__MACOSX/
+Thumbs.db
+.vscode/
+.idea/
