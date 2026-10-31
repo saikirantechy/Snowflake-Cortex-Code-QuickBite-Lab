@@ -363,8 +363,10 @@ try:
                   f"Top theme: {chats.iloc[0]['theme']} ({int(chats.iloc[0]['chats'])})", delta_color="off", border=True)
         fig = px.pie(chats, names="theme", values="chats", hole=0.55,
                      color_discrete_sequence=[COLORS["focus"], "#F2A541", "#2E86AB", "#7B8794", "#B8C4CE"])
-        fig.update_traces(textinfo="percent+label", textposition="outside")
-        st.plotly_chart(style(fig, 380).update_layout(showlegend=False), use_container_width=True)
+        fig.update_traces(textinfo="percent", textposition="inside", sort=False)
+        st.plotly_chart(style(fig, 400).update_layout(
+            showlegend=True, legend=dict(orientation="h", yanchor="top", y=-0.05, xanchor="center", x=0.5)),
+            use_container_width=True)
     with c2:
         st.markdown("**AI_SUMMARIZE_AGG summary**")
         st.info(summ.iloc[0]["summary"], icon=":material/smart_toy:")

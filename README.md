@@ -26,6 +26,47 @@ Using only natural-language prompts in Cortex Code, you load raw CSV data into S
 
 Snowflake · Snowflake Cortex Code (CoCo) · Cortex AI · SQL · Python · Streamlit · Plotly
 
+## 🔄 Workflow
+
+```text
+ Raw CSV data (10 files)
+        │   PUT → stage → INFER_SCHEMA → COPY INTO
+        ▼
+ Snowflake Cortex Code (CoCo)  ── natural-language prompts drive every step
+        │
+        ▼
+ Snowflake database  QUICKBITE_DB.RAW
+        │
+        ▼
+ SQL analytics       monthly KPIs · zone attribution · release before/after · weather join
+        │
+        ▼
+ Cortex AI           AI_CLASSIFY (5 complaint themes) · AI_SUMMARIZE_AGG
+        │            → QUICKBITE_DB.ANALYTICS
+        ▼
+ Customer complaint intelligence
+        │
+        ▼
+ Streamlit + Plotly dashboard
+        │
+        ▼
+ Executive insights & recommendations
+```
+
+See [docs/architecture.md](docs/architecture.md) for the data model.
+
+## 📸 Screenshots from my implementation
+
+These are captured from the running dashboard, against real query results.
+
+| Monthly refunds | Weekly late-delivery %: Whitefield-East vs others |
+|---|---|
+| ![Monthly performance](screenshots/monthly-performance.png) | ![Weekly late delivery](screenshots/weekly-late-delivery.png) |
+| **Rain amplifies the problem** | **Cortex AI complaint intelligence** |
+| ![Weather impact](screenshots/weather-impact.png) | ![Cortex AI](screenshots/cortex-ai-complaints.png) |
+| **Red herring: Cloud Kitchens Hub** | |
+| ![Cloud Kitchens check](screenshots/cloud-kitchens-check.png) | |
+
 ## 📂 Repository structure
 
 ```text
@@ -71,6 +112,18 @@ Snowflake · Snowflake Cortex Code (CoCo) · Cortex AI · SQL · Python · Strea
 6. Cortex AI functions
 7. Streamlit dashboard development
 8. Turning analysis into business decisions
+
+## 🧭 Workshop material vs this implementation
+
+| From the workshop (31 Oct 2026, Bengaluru) | Built here |
+|---|---|
+| The business scenario ("Why is my biryani always late?") | The prompts, rewritten as eight step-by-step files plus a master prompt |
+| The synthetic QuickBite dataset (**not redistributed**) | The Streamlit + Plotly dashboard (`dashboard/app.py`) |
+| The expected checkpoints (e.g. +40% refunds, Whitefield-East, rider-assign v2.3) | Validation of every checkpoint against live query results ([docs/expected-results.md](docs/expected-results.md)), including where my numbers differ and why |
+| | Documented pitfalls: late-% definition, AI_CLASSIFY label wording, weekly-bucket bias, chart axis bug |
+| | Architecture, setup guide, screenshots |
+
+The workshop handout itself is not republished here.
 
 ## ⚠️ Notes
 
